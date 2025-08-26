@@ -1,5 +1,5 @@
 import React from 'react'
-import assets from '../assets/assets'
+import assets, { userDummyData } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 
 const LeftSide = ({selectedUser , setSelectedUser}) => {
@@ -25,6 +25,22 @@ const LeftSide = ({selectedUser , setSelectedUser}) => {
             <img src={assets.search_icon} alt="search" className='w-3' />
             <input type="text" className='bg-transparent border-none outline-none text-white text-xs place-holder-[#c8c8c8] flex-1' 
             placeholder='search user...'/>
+        </div>
+
+
+        <div className='flex flex-col space-y-4'>
+            {userDummyData.map((user,index)=>(
+                <div key={index} className='flex items-center space-x-4'>
+                <img src={user ?.profilePic || assets.avatar_icon} alt="" className='rounded-full w-[35px] aspect-[1/1]'/>
+                <div className='flex flex-col leading-5'>
+                    <p>{user.fullName}</p>
+                    {index >3 ?
+                    <span className='text-green-500 text-xs'>Online</span>:
+                    <span className='text-neutral-400 text-xs'>Offline</span>
+                    }
+                </div>
+                </div>
+            ))}
         </div>
     </div>
     </div>
